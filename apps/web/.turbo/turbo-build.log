@@ -1,0 +1,90 @@
+$ next build
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/drewsepeczi/bun.lock as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /Users/drewsepeczi/nextbase-nextjs-supabase-starter/pnpm-workspace.yaml
+
+▲ Next.js 16.2.6 (Turbopack)
+- Environments: .env
+- Cache Components enabled
+
+  Creating an optimized production build ...
+(node:96328) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:96390) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+✓ Compiled successfully in 10.8s
+  Running TypeScript ...
+  Finished TypeScript in 11.4s ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/27) ...
+  Generating static pages using 9 workers (6/27) 
+  Generating static pages using 9 workers (13/27) 
+  Generating static pages using 9 workers (20/27) 
+✓ Generating static pages using 9 workers (27/27) in 813ms
+  Finalizing page optimization ...
+
+Route (app)                        Revalidate  Expire
+┌ ◐ /
+├ ○ /_not-found
+├ ○ /about
+├ ◐ /admin                                15m      1y
+├ ◐ /admin/comments                       15m      1y
+├ ◐ /admin/ideas                          15m      1y
+├ ◐ /admin/ideas/[id]
+│ └ /admin/ideas/[id]
+├ ◐ /admin/users                          15m      1y
+├ ○ /auth/auth-code-error
+├ ƒ /auth/callback
+├ ƒ /auth/confirm
+├ ◐ /bookmarks                            15m      1y
+├ ◐ /dashboard                            15m      1y
+├ ◐ /dashboard/new                        15m      1y
+├ ◐ /following                            15m      1y
+├ ○ /forgot-password
+├ ◐ /ideas/[slug]
+│ └ /ideas/[slug]
+├ ◐ /leaderboard
+├ ◐ /login
+├ ◐ /my-ideas                             15m      1y
+├ ◐ /private-item/[privateItemId]
+│ └ /private-item/[privateItemId]
+├ ◐ /private-items                        15m      1y
+├ ◐ /settings/profile                     15m      1y
+├ ◐ /sign-up
+├ ◐ /u/[username]
+│ └ /u/[username]
+└ ◐ /update-password
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)             prerendered as static content
+◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content
+ƒ  (Dynamic)            server-rendered on demand
+
+$ next-sitemap --config next-sitemap.config.cjs
+✨ [next-sitemap] Loading next-sitemap config: file:///Users/drewsepeczi/nextbase-nextjs-supabase-starter/apps/web/next-sitemap.config.cjs
+✅ [next-sitemap] Generation completed
+┌───────────────┬────────┐
+│ (index)       │ Values │
+├───────────────┼────────┤
+│ indexSitemaps │ 1      │
+│ sitemaps      │ 1      │
+└───────────────┴────────┘
+-----------------------------------------------------
+ SITEMAP INDICES 
+-----------------------------------------------------
+
+   ○ https://my-awesome-saas.com/sitemap.xml
+
+
+-----------------------------------------------------
+ SITEMAPS 
+-----------------------------------------------------
+
+   ○ https://my-awesome-saas.com/sitemap-0.xml
+
+

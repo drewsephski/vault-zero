@@ -224,12 +224,12 @@ pnpm dev
 ```
 
 ### 5. Test
-```bash
-pnpm test          # Vitest unit / integration
-pnpm test:e2e      # Playwright end-to-end
-pnpm typecheck     # tsc --noEmit across the monorepo
-pnpm lint          # oxlint
-```
+| Command | Purpose |
+| --- | --- |
+| `pnpm test` | Vitest unit / integration |
+| `pnpm test:e2e` | Playwright end-to-end |
+| `pnpm typecheck` | `tsc --noEmit` across the monorepo |
+| `pnpm lint` | oxlint |
 
 ### 6. Deploy
 NextBase deploys to any Node 22+ host. Vercel is the path of least resistance:

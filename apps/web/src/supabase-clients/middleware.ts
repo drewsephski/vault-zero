@@ -35,11 +35,16 @@ export async function updateSession(request: NextRequest) {
   // issues with users being randomly logged out.
 
   const protectedPages = [
-    '/dashboard',
-    '/private-item',
-    '/private-items',
-    '/items',
-    '/item',
+    '/dashboard{/*path}',
+    '/private-item{/*path}',
+    '/private-items{/*path}',
+    '/items{/*path}',
+    '/item{/*path}',
+    '/my-ideas{/*path}',
+    '/bookmarks{/*path}',
+    '/following{/*path}',
+    '/settings/profile{/*path}',
+    '/admin{/*path}',
   ];
 
   const {

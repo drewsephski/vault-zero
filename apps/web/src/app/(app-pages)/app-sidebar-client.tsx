@@ -11,27 +11,56 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarRail } from "@/components/ui/sidebar";
 import { signOutAction } from "@/data/auth/sign-out";
+import type { ProfileRow } from "@/types/vaultzero";
 import { User } from "@supabase/supabase-js";
-import { ChevronUp, Home, Lock, LogOut, Settings } from "lucide-react";
+import { Bookmark, ChevronUp, Lightbulb, LogOut, Radio, Rocket, Settings, ShieldCheck, Trophy } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTransition } from "react";
 const navigationItems: { title: string; url: string; icon: React.ElementType }[] = [
   {
-    title: 'Dashboard',
-    url: '/dashboard',
-    icon: Home,
+    title: 'Discover',
+    url: '/',
+    icon: Lightbulb,
   },
   {
-    title: 'Private Items',
-    url: '/private-items',
-    icon: Lock,
+    title: 'My Ideas',
+    url: '/my-ideas',
+    icon: Rocket,
+  },
+  {
+    title: 'Bookmarks',
+    url: '/bookmarks',
+    icon: Bookmark,
+  },
+  {
+    title: 'Following',
+    url: '/following',
+    icon: Radio,
+  },
+  {
+    title: 'Leaderboard',
+    url: '/leaderboard',
+    icon: Trophy,
+  },
+  {
+    title: 'Profile',
+    url: '/settings/profile',
+    icon: Settings,
   },
 ];
 
 
 
-export function AppSidebarContent({ user }: { user: User }) {
+export function AppSidebarContent({
+  user,
+  profile,
+  isAdmin,
+}: {
+  user: User;
+  profile: ProfileRow | null;
+  isAdmin: boolean;
+}) {
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
 
@@ -42,7 +71,7 @@ export function AppSidebarContent({ user }: { user: User }) {
   }
 
   const userEmail = user?.email || 'user@example.com';
-  const userName = user?.user_metadata?.name || user.email?.split('@')[0];
+  const userName = profile?.username || user?.user_metadata?.name || user.email?.split('@')[0] || 'VaultZero user';
   const userInitials = userName
     .split(' ')
     .map((n) => n[0])
@@ -54,7 +83,7 @@ export function AppSidebarContent({ user }: { user: User }) {
       <SidebarGroupLabel>Navigation</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
-          {navigationItems.map((item) => {
+          {[...navigationItems, ...(isAdmin ? [{ title: 'Admin', url: '/admin', icon: ShieldCheck }] : [])].map((item) => {
             const isActive = pathname === item.url;
             const Icon = item.icon;
             return (
@@ -118,8 +147,10 @@ export function AppSidebarContent({ user }: { user: User }) {
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
+                <Link href="/settings/profile" className="flex items-center">
                 <Settings className="mr-2 h-4 w-4" />
                 Settings
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleSignOut} disabled={isPending}>
